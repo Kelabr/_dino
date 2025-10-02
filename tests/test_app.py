@@ -66,12 +66,11 @@ def test_root_deve_retornar_html_ola_mundo(client):
 #             'username': 'bob',
 #             'email': 'bob@exemplo.com',
 #             'password':"string"
-#         }   
+#         }
 #     )
 
 #     assert response.status_code == HTTPStatus.NOT_FOUND
 #     assert response.json() == {'detail': 'User not found'}
-
 
 
 # def teste_delete_user(client):
@@ -98,4 +97,3 @@ def test_root_deve_retornar_html_ola_mundo(client):
 #     assert response.json() == {
 #         {'detail': 'User not found'}
 #     }
-
