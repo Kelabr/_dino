@@ -9,6 +9,7 @@ from fastapi.responses import HTMLResponse
 from fast_zero.database import get_session
 from fast_zero.models import User
 from .schemas import Menssage, UserSchema, UserPublic, UserDB, UserList
+from fast_zero.security import get_password_hash
 
 app = FastAPI()
 
@@ -43,9 +44,12 @@ def create_user(user: UserSchema, session: Session = Depends(get_session)):
             raise HTTPException(
                 status_code=HTTPStatus.CONFLICT, detail="Email already exists"
             )
+        
+    hashed_password = get_password_hash(user.password)
+        
 
     db_user = User(
-        username=user.username, password=user.password, email=user.email
+        username=user.username, password=hashed_password, email=user.email
     )
 
     session.add(db_user)
